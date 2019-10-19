@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+- node
+
+services:
+- postgresql
+
+before_script:
+- psql -c 'create database recipe_microservice_database_test;' -U postgres
+
+script:
+- npm install
+
+after_script:
+- npm test
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: QBNxO7HrRIUMvrGuQy6f7frbU0/3X6wfMkeunJ0pT+yY/GjCHhGGw3sh8SWAKdmeB2p8mrgeCnsbWd2nPIa1VG8RXvRROFd7PpU0A3jlaDD6NGcugaIEa9+cwzPApYT27PC3pufedDlyZUUVy0puzek4KgOJDBr26/5pOWB6iORurTAgaMBohzSVIbOexPz6EtWxpIgHFdmxRcLMMpk/q7AWRaokE0LjULKhIhVvDmGYVfDlVR5co3L3bfyPhQH/1lwbxNLtoPkBNBWZihix5VlITkM1SiWYaIcqHGUz41BgxNKkX6V2R6eNzOBHnk7MT6IRWVenW+bR2qykXOqtbezPcwKDEkouT9TP2WOz962ZouKRft9mCvxqRHGH640wJDu6LuMCC4s1/QZWTFnj/bCoAin94ycbzJaAoMMr2IptRpD1ZrUj7QMcB/r63+pOZsu8Asdycnve3c92VWUAuhAigs4+NCZ2zu/DF29nrMLAtiA0ctI7KIB04t3vt5OfeI0HGG14vapAFgdYNoSW6kMGjOMRXwYcrG8tzTQ0Qc4GN/JAnzyBw+6eixAIy1iYZjhlxteEVgsVsyR7lInSQXtfcXVDwH6K36VF0ub0FLaH9QKPHySPzy8DHGAOqjGYmDieui/LrIYUKCqhyD4X87+mFkh2EQEiRdyCPXOLBvo=
+  app: thawing-wave-76846
+  on:
+    repo: froydroyce/mockr_api
