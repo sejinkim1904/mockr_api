@@ -1,15 +1,15 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const graphqlHTTP = require('express-graphql')
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
+const schema  = require('./graphql/schema');
+const { getQuestions } = require('./graphql/resolvers.js');
 
-var app = express();
+const app = express();
 
-const postgraphql = require(`postgraphql`).postgraphql;
-const { graphqlExpress, graphiqlExpress } = require(`apollo-server-express`);
-const schema  = require('./db/schema');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -18,8 +18,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
-app.use(postgraphql('postgres://localhost:5432', 'public', {graphiql: true}));
+
+const root = {
+  questions: getQuestions
+}
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true
+}));
 
 module.exports = app;
