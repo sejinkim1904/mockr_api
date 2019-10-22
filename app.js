@@ -27,7 +27,8 @@ const root = {
   questions: getQuestions,
   addQuestion: createQuestion,
   updateQuestionBody: updateBody,
-  deactivateQuestion: updateActive
+  deactivateQuestion: updateActive,
+  activateQuestion: updateActive
 }
 app.use('/graphql', graphqlHTTP({
   schema: schema,

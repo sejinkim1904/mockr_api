@@ -6,7 +6,7 @@ const Question = require('../../models').Question;
 
 
 describe('Mockr API', () => {
-  describe('GraphQL deactivate question mutation query', () => {
+  describe('GraphQL activate question mutation query', () => {
     beforeEach(async () => {
       await cleanup();
     });
@@ -14,10 +14,11 @@ describe('Mockr API', () => {
     test('It returns the updated question', async () => {
       let question = await Question.create({
         body: "How does your past experiences help you become a better developer?",
+        active: false
       });
       let reqBody = {
         "query": `mutation {
-          deactivateQuestion(id:${question.id}, active: false)
+          activateQuestion(id:${question.id}, active: true)
           {id,body,active}
         }`
       };
@@ -27,9 +28,9 @@ describe('Mockr API', () => {
         .send(reqBody)
         .then(response => {
           expect(response.status).toBe(200)
-          expect(Object.keys(response.body.data.deactivateQuestion)).toContain("id")
-          expect(Object.keys(response.body.data.deactivateQuestion)).toContain("active")
-          expect(response.body.data.deactivateQuestion.active).toBe(false)
+          expect(Object.keys(response.body.data.activateQuestion)).toContain("id")
+          expect(Object.keys(response.body.data.activateQuestion)).toContain("active")
+          expect(response.body.data.activateQuestion.active).toBe(true)
         })
     })
   })
