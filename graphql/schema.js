@@ -6,6 +6,22 @@ module.exports = buildSchema(`
     body: String
     active: Boolean
   },
+  type Interview {
+    id: Int
+    score: Int
+    summary: String
+    users: [User]
+  },
+  type User {
+    id: Int
+    firstName: String
+    lastName: String
+    email: String
+    password: String
+    program: String
+    cohort: Int
+    role: Int
+  }
   type Query {
     questions(
       id: Int
@@ -31,5 +47,9 @@ module.exports = buildSchema(`
       id: Int!
       active: Boolean!
     ): Question
+    addInterview(
+      studentId: Int!
+      interviewerId: Int!
+    ): Interview!
   }
 `)
