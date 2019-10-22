@@ -12,5 +12,12 @@ module.exports = buildSchema(`
       body: String
       active: Boolean
     ): [Question]
+  },
+  type Mutation {
+    addQuestion(
+      id: Int
+      body: String!
+      active: Boolean
+    ): Question!
   }
 `)
