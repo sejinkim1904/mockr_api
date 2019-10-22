@@ -18,5 +18,15 @@ module.exports = {
     .then(updatedQuestion => {
       return updatedQuestion[1][0]
     })
+  },
+
+  updateActive: ({id, active}) => {
+    return Question.update(
+      { active },
+      { returning: true, where: { id }}
+    )
+    .then(updatedQuestion => {
+      return updatedQuestion[1][0]
+    })
   }
 };

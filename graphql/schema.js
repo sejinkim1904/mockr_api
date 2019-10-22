@@ -23,5 +23,9 @@ module.exports = buildSchema(`
       id: Int!
       body: String!
     ): Question
+    deactivateQuestion(
+      id: Int!
+      active: Boolean!
+    ): Question
   }
 `)
