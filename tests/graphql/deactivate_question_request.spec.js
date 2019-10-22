@@ -27,7 +27,6 @@ describe('Mockr API', () => {
         .send(reqBody)
         .then(response => {
           expect(response.status).toBe(200)
-          console.log(response.body)
           expect(Object.keys(response.body.data.deactivateQuestion)).toContain("id")
           expect(Object.keys(response.body.data.deactivateQuestion)).toContain("active")
           expect(response.body.data.deactivateQuestion.active).toBe(false)
