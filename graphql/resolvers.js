@@ -7,7 +7,16 @@ module.exports = {
   },
 
   createQuestion: ({body}) => {
-    console.log(body)
     return Question.create({body: body})
+  },
+
+  updateBody: ({id, body}) => {
+    return Question.update(
+      { body },
+      { returning: true, where: { id }}
+    )
+    .then(updatedQuestion => {
+      return updatedQuestion[1][0]
+    })
   }
 };
