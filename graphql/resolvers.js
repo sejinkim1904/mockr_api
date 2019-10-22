@@ -3,7 +3,11 @@ const Sequelize = require('sequelize');
 
 module.exports = {
   getQuestions: () => {
-    console.log("is this working")
     return Question.findAll()
+  },
+
+  createQuestion: ({body}) => {
+    console.log(body)
+    return Question.create({body: body})
   }
 };

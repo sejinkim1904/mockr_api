@@ -6,10 +6,9 @@ const graphqlHTTP = require('express-graphql')
 
 const indexRouter = require('./routes/index');
 const schema  = require('./graphql/schema');
-const { getQuestions } = require('./graphql/resolvers.js');
+const { getQuestions, createQuestion } = require('./graphql/resolvers.js');
 
 const app = express();
-
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -20,7 +19,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 
 const root = {
-  questions: getQuestions
+  questions: getQuestions,
+  addQuestion: createQuestion
 }
 app.use('/graphql', graphqlHTTP({
   schema: schema,
