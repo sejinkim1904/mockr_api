@@ -3,17 +3,18 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const graphqlHTTP = require('express-graphql')
-
+const cors = require('cors');
 const indexRouter = require('./routes/index');
 const schema  = require('./graphql/schema');
-const { 
-  getQuestions, 
-  createQuestion, 
+const {
+  getQuestions,
+  createQuestion,
   updateBody,
   updateActive
 } = require('./graphql/resolvers.js');
 
 const app = express();
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());
