@@ -4,17 +4,21 @@ const app = require('../../app');
 const cleanup = require('../helpers/test_clear_database');
 const Question = require('../../models').Question;
 
+
 describe('Mockr API', () => {
-  describe('Create question GET request', () => {
+  describe('GraphQL update question mutation query', () => {
     beforeEach(async () => {
       await cleanup();
     });
 
-    test('It returns the created question', async () => {
+    test('It returns the updated question', async () => {
+      let question = await Question.create({
+        body: "How does your past experiences help you become a better developer?",
+      });
       let body = "Do you like writing tests?"
       let reqBody = {
         "query": `mutation {
-          addQuestion(body: "${body}")
+          updateQuestionBody(id:${question.id}, body: "${body}")
           {id,body,active}
         }`
       };
@@ -24,9 +28,9 @@ describe('Mockr API', () => {
         .send(reqBody)
         .then(response => {
           expect(response.status).toBe(200)
-          expect(Object.keys(response.body.data.addQuestion)).toContain("id")
-          expect(Object.keys(response.body.data.addQuestion)).toContain("body")
-          expect(Object.keys(response.body.data.addQuestion)).toContain("active")
+          expect(Object.keys(response.body.data.updateQuestionBody)).toContain("id")
+          expect(Object.keys(response.body.data.updateQuestionBody)).toContain("active")
+          expect(response.body.data.updateQuestionBody.body).toBe("Do you like writing tests?")
         })
     })
   })
