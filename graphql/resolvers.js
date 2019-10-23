@@ -2,6 +2,8 @@ const Question = require('../models').Question;
 const Interview = require('../models').Interview;
 const InterviewUser = require('../models').InterviewUser;
 const User = require('../models').User;
+const UserNote = require('../models').UserNote;
+const Note = require('../models').Note;
 const Sequelize = require('sequelize');
 
 module.exports = {
@@ -68,5 +70,51 @@ module.exports = {
       .then(updatedInterview => {
         return updatedInterview[1][0]
       })
-  }
+  },
+
+  createNote: async ({
+    body,
+    score,
+    studentId,
+    interviewerId,
+    questionId,
+    interviewId
+  }) => {
+    return await Note.create(
+      { body, score, questionId, interviewId }
+    )
+      .then(async note => {
+        await UserNote.create({
+          noteId: note.id,
+          userId: studentId
+        });
+        await UserNote.create({
+          noteId: note.id,
+          userId: interviewerId
+        });
+        return note;
+      })
+        .then(note => {
+          return Note.findOne({
+            where: { id: note.id },
+            include: [
+              {
+                model: User,
+                as: 'users',
+                through: {
+                  attributes: []
+                }
+              },
+              {
+                model: Question,
+                as: 'question',
+              },
+              {
+                model: Interview,
+                as: 'interview'
+              }
+            ]
+          });
+        });
+  },
 };
