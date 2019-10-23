@@ -59,7 +59,6 @@ describe('Mockr API', () => {
         .send(reqBody)
         .then(response => {
           expect(response.status).toBe(200)
-          console.log(response.body)
           expect(Object.keys(response.body.data.finalizeInterview)).toContain("id")
           expect(response.body.data.finalizeInterview.score).toBe(5)
           expect(response.body.data.finalizeInterview.summary).toContain("great job")
