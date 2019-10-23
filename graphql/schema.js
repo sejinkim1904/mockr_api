@@ -51,5 +51,10 @@ module.exports = buildSchema(`
       studentId: Int!
       interviewerId: Int!
     ): Interview!
+    finalizeInterview(
+      id: Int!
+      score: Int!
+      summary: String!
+    ): Interview!
   }
 `)

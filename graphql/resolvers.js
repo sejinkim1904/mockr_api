@@ -18,19 +18,19 @@ module.exports = {
       { body },
       { returning: true, where: { id }}
     )
-    .then(updatedQuestion => {
-      return updatedQuestion[1][0]
-    })
+      .then(updatedQuestion => {
+        return updatedQuestion[1][0]
+      })
   },
 
   updateActive: ({id, active}) => {
     return Question.update(
       { active },
-      { returning: true, where: { id }}
+      { returning: true, where: { id } }
     )
-    .then(updatedQuestion => {
-      return updatedQuestion[1][0]
-    })
+      .then(updatedQuestion => {
+        return updatedQuestion[1][0]
+      })
   },
 
   createInterview: async ({studentId, interviewerId}) => {
@@ -46,17 +46,27 @@ module.exports = {
         })
         return interview;
       })
-      .then(interview => {
-        return Interview.findOne({
-          where: { id: interview.id },
-          include: [{
-            model: User,
-            as: 'users',
-            through: {
-              attributes: []
-            }
-          }]
+        .then(interview => {
+          return Interview.findOne({
+            where: { id: interview.id },
+            include: [{
+              model: User,
+              as: 'users',
+              through: {
+                attributes: []
+              }
+            }]
+          })
         })
+  },
+
+  updateInterview: ({id, score, summary}) => {
+    return Interview.update(
+      { score, summary },
+      { returning: true, where: { id } }
+    )
+      .then(updatedInterview => {
+        return updatedInterview[1][0]
       })
   }
 };
