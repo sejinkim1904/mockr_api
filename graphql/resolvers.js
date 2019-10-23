@@ -1,5 +1,6 @@
 const Question = require('../models').Question;
 const Interview = require('../models').Interview;
+const InterviewQuestion = require('../models').InterviewQuestion;
 const InterviewUser = require('../models').InterviewUser;
 const User = require('../models').User;
 const UserNote = require('../models').UserNote;
@@ -69,6 +70,27 @@ module.exports = {
     )
       .then(updatedInterview => {
         return updatedInterview[1][0]
+      })
+  },
+
+  createInterviewQuestion: ({interviewId, questionId, skipped }) => {
+    return InterviewQuestion.create(
+      { interviewId, questionId, skipped }
+    )
+      .then(interviewQuestion => {
+        return InterviewQuestion.findOne({
+          where: { id: interviewQuestion.id },
+          include: [
+            {
+              model: Question,
+              as: 'question',
+            },
+            {
+              model: Interview,
+              as: 'interview'
+            }
+          ]
+        })
       })
   },
 
