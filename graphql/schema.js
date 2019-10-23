@@ -12,6 +12,14 @@ module.exports = buildSchema(`
     summary: String
     users: [User]
   },
+  type Note {
+    id: Int
+    body: String
+    score: Int
+    users: [User]
+    interview: Interview
+    question: Question
+  },
   type User {
     id: Int
     firstName: String
@@ -56,5 +64,13 @@ module.exports = buildSchema(`
       score: Int!
       summary: String!
     ): Interview!
+    addNote(
+      body: String!
+      score: Int!
+      studentId: Int!
+      interviewerId: Int!
+      questionId: Int!
+      interviewId: Int!
+    ): Note!
   }
 `)

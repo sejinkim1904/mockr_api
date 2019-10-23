@@ -5,7 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     active: DataTypes.BOOLEAN
   }, {});
   Question.associate = function(models) {
-    // associations can be defined here
+    Question.hasMany(models.Note, {
+      foreignKey: 'questionId',
+      as: 'notes'
+    })
   };
   return Question;
 };
