@@ -29,6 +29,12 @@ module.exports = buildSchema(`
     program: String
     cohort: Int
     role: Int
+  },
+  type InterviewQuestion {
+    id: Int
+    interview: Interview
+    question: Question
+    skipped: Boolean
   }
   type Query {
     questions(
@@ -72,5 +78,10 @@ module.exports = buildSchema(`
       questionId: Int!
       interviewId: Int!
     ): Note!
+    addQuestionToInterview(
+      questionId: Int!
+      interviewId: Int!
+      skipped: Boolean
+    ): InterviewQuestion!
   }
 `)
