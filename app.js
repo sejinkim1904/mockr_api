@@ -12,7 +12,8 @@ const {
   updateBody,
   updateActive,
   createInterview,
-  updateInterview
+  updateInterview,
+  createNote
 } = require('./graphql/resolvers.js');
 
 const app = express();
@@ -33,7 +34,8 @@ const root = {
   deactivateQuestion: updateActive,
   activateQuestion: updateActive,
   addInterview: createInterview,
-  finalizeInterview: updateInterview
+  finalizeInterview: updateInterview,
+  addNote: createNote
 }
 app.use('/graphql', graphqlHTTP({
   schema: schema,
