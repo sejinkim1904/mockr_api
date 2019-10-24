@@ -47,6 +47,9 @@ module.exports = buildSchema(`
     user(
       id: Int!
     ): User!
+    users(
+      role: Int
+    ): [User]
   },
   type Mutation {
     addQuestion(

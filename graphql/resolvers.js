@@ -166,5 +166,14 @@ module.exports = {
       }]
     }
     )
+  },
+
+  getUsers: ({role}) => {
+    if(role === undefined) {
+      return User.findAll();
+    }
+    return User.findAll({
+      where: { role }
+    });
   }
 };
