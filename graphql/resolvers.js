@@ -139,4 +139,32 @@ module.exports = {
           });
         });
   },
+
+  getUser: async ({ id }) => {
+    return await User.findOne({
+      where: { id },
+      include: [{
+        model: Interview,
+        as: 'interviews',
+        include: [ 
+          {
+            model: User,
+            as: 'users',
+          },
+          {
+            model: Note,
+            as: 'notes',
+            include: [{
+              model: Question,
+              as: 'question'
+            }]
+          }
+        ],
+        through: {
+          attributes: []
+        }
+      }]
+    }
+    )
+  }
 };
