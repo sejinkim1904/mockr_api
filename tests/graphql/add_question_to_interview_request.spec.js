@@ -15,7 +15,7 @@ describe('Mockr API', () => {
       let interview = await Interview.create({
         score: null,
         summary: null,
-      })
+      });
       let question = await Question.create({
         body: "How does your past experiences help you become a better developer?",
       });
