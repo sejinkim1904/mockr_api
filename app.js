@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const graphqlHTTP = require('express-graphql')
+const graphqlHTTP = require('express-graphql');
 const cors = require('cors');
 const indexRouter = require('./routes/index');
 const schema  = require('./graphql/schema');
@@ -14,7 +14,8 @@ const {
   createInterview,
   updateInterview,
   createNote,
-  createInterviewQuestion
+  createInterviewQuestion,
+  getUser
 } = require('./graphql/resolvers.js');
 
 const app = express();
@@ -37,7 +38,8 @@ const root = {
   addInterview: createInterview,
   finalizeInterview: updateInterview,
   addNote: createNote,
-  addQuestionToInterview: createInterviewQuestion
+  addQuestionToInterview: createInterviewQuestion,
+  user: getUser
 }
 app.use('/graphql', graphqlHTTP({
   schema: schema,
