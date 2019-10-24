@@ -134,7 +134,7 @@ status: 200
   }
 }
 ```
-* Returns 404 if the question id is not found.
+* Returns 400 if the question id is not found.
 
 #### 4) A user can activate a question
 
@@ -153,7 +153,7 @@ POST '/graphql'
 
 ***Response Example:***
 ```
-status: 20
+status: 200
 {
   "data": {
     "activateQuestion": {
@@ -164,7 +164,8 @@ status: 20
   }
 }
 ```
-* Returns 404 if the question id is not found.
+* Returns 
+if the question id is not found.
 
 #### 5) An admin user can get all questions.
 
@@ -291,7 +292,7 @@ status: 200
 }
 ```
 
-* Returns 400 if the interview is not founod.
+* Returns 400 if the interview is not found.
 
 #### 8) An interviewer can add a note
 
