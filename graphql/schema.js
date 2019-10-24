@@ -11,6 +11,7 @@ module.exports = buildSchema(`
     score: Int
     summary: String
     users: [User]
+    notes: [Note]
   },
   type Note {
     id: Int
@@ -29,6 +30,7 @@ module.exports = buildSchema(`
     program: String
     cohort: Int
     role: Int
+    interviews: [Interview]
   },
   type InterviewQuestion {
     id: Int
@@ -42,6 +44,9 @@ module.exports = buildSchema(`
       body: String
       active: Boolean
     ): [Question]
+    user(
+      id: Int!
+    ): User!
   },
   type Mutation {
     addQuestion(
