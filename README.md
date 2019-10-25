@@ -288,7 +288,6 @@ status: 200
 }
 ```
 
-* Returns 400 if the interview is not found.
 
 #### 8) An interviewer can add a note
 
