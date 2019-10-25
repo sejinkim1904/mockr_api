@@ -46,21 +46,21 @@ https://github.com/froydroyce/mockr_api
 
 ## GraphQL Queries:
 
-### User Queries:
+###  Question Queries:
 
 #### 1) A user can add a Question
 
 ***Request:***
 ```
 POST '/graphql'
-"query": `mutation {
-            addQuestion(body: "How does your past experiences help you become a better developer?")
-           {
-            id
-            body
-            active
-           }
- }`
+mutation {
+  addQuestion(body: "How does your past experiences help you become a better developer?")
+   {
+    id
+    body
+    active
+   }
+ }
 ```
 
 ***Response Example:***
@@ -82,14 +82,14 @@ status: 200
 ***Request:***
 ```
 POST '/graphql'
-"query": `mutation {
-            updateQuestionBody(id: 1, body: "How do you approach test driven development?")
-           {
-            id
-            body
-            active
-           }
- }`
+mutation {
+  updateQuestionBody(id: 1, body: "How do you approach test driven development?")
+   {
+    id
+    body
+    active
+   }
+ }
 ```
 ***Response Example:***
 ```
@@ -104,21 +104,20 @@ status: 200
   }
 }
 ```
-* Returns 404 if the question id is not found
 
 #### 3) A User can deactivate a question
 
 ***Request:***
 ```
 POST '/graphql'
-"query": `mutation {
-           deactivateQuestion(id: 1, active: false)
-           {
-            id
-            body
-            active
-           }
- }`
+mutation {
+  deactivateQuestion(id: 1, active: false)
+    {
+      id
+      body
+      active
+    }
+ }
 ```
 
 ***Response Example:***
@@ -134,21 +133,20 @@ status: 200
   }
 }
 ```
-* Returns 400 if the question id is not found.
 
 #### 4) A user can activate a question
 
 ***Request:***
 ```
 POST '/graphql'
-"query": `mutation {
-          activateQuestion(id: 1, active: true)
-           {
-            id
-            body
-            active
-           }
- }`
+mutation {
+  activateQuestion(id: 1, active: true)
+   {
+    id
+    body
+    active
+   }
+ }
 ```
 
 ***Response Example:***
@@ -164,21 +162,19 @@ status: 200
   }
 }
 ```
-* Returns 
-if the question id is not found.
 
 #### 5) An admin user can get all questions.
 
 ***Request:***
 ```
 POST '/graphql'
-"query": `mutation {
-          questions
-           {
-            id
-            body
-            active
-           }
+mutation {
+  questions
+   {
+    id
+    body
+    active
+   }
  }`
 ```
 
@@ -215,22 +211,22 @@ status: 200
 ***Request:***
 ```
 POST '/graphql'
-"query": `mutation {
-          addInterview(studentId, interviewerId)
-         {
-            id
-            score
-            summary
-            users {
-              id
-              firstName
-              lastName
-              email
-              program,
-              cohort
-              role
-            }
-          }
+mutation {
+  addInterview(studentId, interviewerId)
+ {
+    id
+    score
+    summary
+    users {
+      id
+      firstName
+      lastName
+      email
+      program,
+      cohort
+      role
+    }
+  }
  }`
 ```
 
@@ -267,7 +263,7 @@ status: 200
 ***Request:***
 ```
 POST '/graphql'
-"query": `mutation {
+mutation {
   finalizeInterview(id: 3, score: 3, summary:"What a great interview") {
     id
     score
@@ -299,7 +295,7 @@ status: 200
 ***Request:***
 ```
 POST '/graphql'
-"query": `mutation {
+mutation {
   addNote(
     score: 5
     body: "This was a really awesome answer."
@@ -325,7 +321,7 @@ POST '/graphql'
       role
     }
   }
-}`
+}
 ```
 * Adds a note which creates a relationship for the student and interviewer, as well as the question that was asked.
 
@@ -370,7 +366,7 @@ status: 200
 ***Request:***
 ```
 POST '/graphql'
-"query": `mutation {
+mutation {
   addQuestionToInterview(questionId: 3, interviewId: 3, skipped: true) {
     id
     interview {
@@ -382,7 +378,7 @@ POST '/graphql'
     }
     skipped
   }
-}`
+}
 ```
 ***Response Example:***
 ```
@@ -413,7 +409,7 @@ status: 200
 ***Request:***
 ```
 POST '/graphql'
-"query": `query {
+query {
   user(id: 9000) {
     id
     firstName
@@ -587,15 +583,14 @@ status: 200
 }
 ```
 
-
 #### 11) An interviewer/admin can query for all users, or all users who have a specific role.
 
 ***Request:***
 ```
 POST '/graphql'
-"query": `query {
+query {
   users(role: 1) {
-		id
+    id
     firstName
     lastName
     email
@@ -603,7 +598,7 @@ POST '/graphql'
     program
     cohort
   }
-}`
+}
 ```
 ***Response Example:***
 ```
