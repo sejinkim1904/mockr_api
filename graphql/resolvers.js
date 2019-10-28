@@ -148,6 +148,16 @@ module.exports = {
         });
   },
 
+  editNote: ({ id, score, body }) => {
+    return Note.update(
+      { score, body },
+      {returning: true, where: { id } },
+    )
+      .then(updatedNote => {
+        return updatedNote[1][0]
+      })
+  },
+
   getUser: async ({ id }) => {
     return await User.findOne({
       where: { id },

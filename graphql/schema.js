@@ -89,6 +89,11 @@ module.exports = buildSchema(`
       questionId: Int!
       interviewId: Int!
     ): Note!
+    updateNote(
+      id: Int!
+      score: Int
+      body: String
+    ): Note!
     addQuestionToInterview(
       questionId: Int!
       interviewId: Int!
