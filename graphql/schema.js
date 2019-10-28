@@ -50,6 +50,9 @@ module.exports = buildSchema(`
     users(
       role: Int
     ): [User]
+    randomQuestions(
+      id: Int
+    ): [Question]
   },
   type Mutation {
     addQuestion(

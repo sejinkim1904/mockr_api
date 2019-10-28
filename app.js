@@ -16,7 +16,8 @@ const {
   createNote,
   createInterviewQuestion,
   getUser,
-  getUsers
+  getUsers,
+  getRandomQuestions
 } = require('./graphql/resolvers.js');
 
 const app = express();
@@ -41,7 +42,8 @@ const root = {
   addNote: createNote,
   addQuestionToInterview: createInterviewQuestion,
   user: getUser,
-  users: getUsers
+  users: getUsers,
+  randomQuestions: getRandomQuestions
 }
 app.use('/graphql', graphqlHTTP({
   schema: schema,

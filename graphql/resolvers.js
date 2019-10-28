@@ -12,6 +12,14 @@ module.exports = {
     return Question.findAll()
   },
 
+  getRandomQuestions: () => {
+    return Question.findAll({
+      order: [
+        [Sequelize.fn('RANDOM')]
+      ]
+    })
+  },
+
   createQuestion: ({body}) => {
     return Question.create({body: body})
   },
@@ -146,7 +154,7 @@ module.exports = {
       include: [{
         model: Interview,
         as: 'interviews',
-        include: [ 
+        include: [
           {
             model: User,
             as: 'users',
