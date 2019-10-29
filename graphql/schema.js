@@ -5,6 +5,7 @@ module.exports = buildSchema(`
     id: Int
     body: String
     active: Boolean
+    notes: [Note]
   },
   type Interview {
     id: Int
@@ -12,6 +13,7 @@ module.exports = buildSchema(`
     summary: String
     users: [User]
     notes: [Note]
+    questions: [Question]
   },
   type Note {
     id: Int
@@ -32,12 +34,6 @@ module.exports = buildSchema(`
     role: Int
     interviews: [Interview]
   },
-  type InterviewQuestion {
-    id: Int
-    interview: Interview
-    question: Question
-    skipped: Boolean
-  }
   type Query {
     questions(
       id: Int
@@ -94,10 +90,5 @@ module.exports = buildSchema(`
       score: Int
       body: String
     ): Note!
-    addQuestionToInterview(
-      questionId: Int!
-      interviewId: Int!
-      skipped: Boolean
-    ): InterviewQuestion!
   }
 `)
