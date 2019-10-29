@@ -8,7 +8,6 @@ const Interview = require('../../models').Interview;
 const InterviewUser = require('../../models').InterviewUser;
 const Note = require('../../models').Note;
 const UserNote = require('../../models').UserNote;
-const InterviewQuestion = require('../../models').InterviewQuestion;
 
 describe('Mockr API', () => {
   describe('updateNote mutation request', () => {
@@ -54,16 +53,6 @@ describe('Mockr API', () => {
         questionId: question1.id,
         interviewId: interview.id
       });
-      //
-      // await UserNote.create({
-      //   noteId: note1.id,
-      //   userId: student.id
-      // });
-      //
-      // await UserNote.create({
-      //   noteId: note1.id,
-      //   userId: interviewer.id
-      // });
 
       let reqBody = {
         "query": `mutation {
@@ -82,7 +71,6 @@ describe('Mockr API', () => {
         .post('/graphql')
         .send(reqBody)
         .then(response => {
-          console.log(response)
           expect(response.status).toBe(200)
           expect(response.body.data.updateNote.id).toBe(note1.id)
           expect(response.body.data.updateNote.score).toBe(3)
