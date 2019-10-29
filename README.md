@@ -48,7 +48,7 @@ https://github.com/froydroyce/mockr_api
 
 ###  Question Queries:
 
-#### 1) A user can add a Question
+#### 1) User can add a Question
 
 ***Request:***
 ```
@@ -77,7 +77,7 @@ status: 200
 }
 ```
 
-#### 2) A user can update a question
+#### 2) User can update a question
 
 ***Request:***
 ```
@@ -105,7 +105,7 @@ status: 200
 }
 ```
 
-#### 3) A User can deactivate a question
+#### 3) User can deactivate a question
 
 ***Request:***
 ```
@@ -134,7 +134,7 @@ status: 200
 }
 ```
 
-#### 4) A user can activate a question
+#### 4) user can activate a question
 
 ***Request:***
 ```
@@ -163,12 +163,12 @@ status: 200
 }
 ```
 
-#### 5) An admin user can get all questions.
+#### 5) User can get all questions.
 
 ***Request:***
 ```
 POST '/graphql'
-mutation {
+query {
   questions
    {
     id
@@ -185,7 +185,45 @@ status: 200
   "data": {
     "questions": [
       {
+        "id": 1,
+        "body": "What is your favorite framework, and why?",
+        "active": true
+      },
+      {
         "id": 2,
+        "body": "How do you like working on teams?",
+        "active": true
+      },
+      {
+        "id": 3,
+        "body": "Do you enjot TDD?",
+        "active": false
+      }
+    ]
+  }
+}
+```
+***Request:***
+```
+POST '/graphql'
+query {
+  randomQuestions
+   {
+    id
+    body
+    active
+   }
+ }`
+```
+
+***Response Example:***
+```
+status: 200
+{
+  "data": {
+    "randomQuestions": [
+      {
+        "id": 1,
         "body": "What is your favorite framework, and why?",
         "active": true
       },
@@ -195,7 +233,7 @@ status: 200
         "active": true
       },
       {
-        "id": 1,
+        "id": 2,
         "body": "Do you enjot TDD?",
         "active": false
       }
@@ -360,22 +398,16 @@ status: 200
 }
 ```
 
-#### 9) An interviewer can add a question to the an interview
+#### 9) An interviewer can update a note
 
 ***Request:***
 ```
 POST '/graphql'
 mutation {
-  addQuestionToInterview(questionId: 3, interviewId: 3, skipped: true) {
+  updateNote(id: 3, score: 3, body: "This was a mistake") {
     id
-    interview {
-      id
-    }
-    question {
-      id
-      body
-    }
-    skipped
+    body
+    score 
   }
 }
 ```
@@ -384,16 +416,10 @@ mutation {
 status: 200
 {
   "data": {
-    "addQuestionToInterview": {
-      "id": 2,
-      "interview": {
-        "id": 3
-      },
-      "question": {
-        "id": 3,
-        "body": "This is another question."
-      },
-      "skipped": true
+    "updateNote": {
+      "id": 1,
+      "body": "Actually this was a mistake",
+      "score": 1
     }
   }
 }
