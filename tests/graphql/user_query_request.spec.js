@@ -8,13 +8,12 @@ const Interview = require('../../models').Interview;
 const InterviewUser = require('../../models').InterviewUser;
 const Note = require('../../models').Note;
 const UserNote = require('../../models').UserNote;
-const InterviewQuestion = require('../../models').InterviewQuestion;
 
 describe('Mockr API', () => {
   describe('User Graphql query request', () => {
     beforeEach(async () => {
       await cleanup();
-    });       
+    });
 
     test('It returns a specified user', async () => {
      const student =  await User.create({
@@ -61,21 +60,6 @@ describe('Mockr API', () => {
       await InterviewUser.create({
         interviewId: interview.id,
         userId: interviewer.id
-      });
-
-      await InterviewQuestion.create({
-        questionId: question1.id,
-        interviewId: interview.id,
-      });
-
-      await InterviewQuestion.create({
-        questionId: question2.id,
-        interviewId: interview.id,
-      });
-
-      await InterviewQuestion.create({
-        questionId: question3.id,
-        interviewId: interview.id,
       });
 
       const note1 = await Note.create({
@@ -136,7 +120,7 @@ describe('Mockr API', () => {
       });
 
       let reqBody = {
-        "query": `{ 
+        "query": `{
           user(id:${student.id}) {
             id
             firstName
