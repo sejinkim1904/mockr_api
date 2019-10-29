@@ -5,7 +5,7 @@ module.exports = buildSchema(`
     id: Int
     body: String
     active: Boolean
-    notes: [Note]
+    note: Note
   },
   type Interview {
     id: Int
@@ -49,6 +49,9 @@ module.exports = buildSchema(`
     randomQuestions(
       id: Int
     ): [Question]
+    interview(
+      id: Int!
+    ): Interview
   },
   type Mutation {
     addQuestion(
