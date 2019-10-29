@@ -1,6 +1,5 @@
 const Question = require('../models').Question;
 const Interview = require('../models').Interview;
-const InterviewQuestion = require('../models').InterviewQuestion;
 const InterviewUser = require('../models').InterviewUser;
 const User = require('../models').User;
 const UserNote = require('../models').UserNote;
@@ -21,13 +20,13 @@ module.exports = {
   },
 
   createQuestion: ({body}) => {
-    return Question.create({body: body})
+    return Question.create( { body } )
   },
 
   updateBody: ({id, body}) => {
     return Question.update(
       { body },
-      { returning: true, where: { id }}
+      { returning: true, where: { id } }
     )
       .then(updatedQuestion => {
         return updatedQuestion[1][0]
@@ -78,27 +77,6 @@ module.exports = {
     )
       .then(updatedInterview => {
         return updatedInterview[1][0]
-      })
-  },
-
-  createInterviewQuestion: ({interviewId, questionId, skipped }) => {
-    return InterviewQuestion.create(
-      { interviewId, questionId, skipped }
-    )
-      .then(interviewQuestion => {
-        return InterviewQuestion.findOne({
-          where: { id: interviewQuestion.id },
-          include: [
-            {
-              model: Question,
-              as: 'question',
-            },
-            {
-              model: Interview,
-              as: 'interview'
-            }
-          ]
-        })
       })
   },
 
@@ -175,6 +153,14 @@ module.exports = {
             include: [{
               model: Question,
               as: 'question'
+            }]
+          },
+          {
+            model: Question,
+            as: 'questions',
+            include: [{
+              model: Note,
+              as: 'notes'
             }]
           }
         ],
