@@ -70,6 +70,29 @@ module.exports = {
         })
   },
 
+  getInterview: ({ id }) => {
+    return Interview.findOne({
+      where: { id },
+      include: [
+        {
+          model: User,
+          as: 'users',
+          through: {
+            attributes: []
+          }
+        },
+        {
+          model: Note,
+          as: 'notes',
+          include: [{
+            model: Question,
+            as: 'question'
+          }]
+        }
+      ]
+    })
+  },
+
   updateInterview: ({id, score, summary}) => {
     return Interview.update(
       { score, summary },
