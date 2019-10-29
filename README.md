@@ -26,7 +26,7 @@ https://thawing-wave-76846.herokuapp.com/graphql
 https://github.com/froydroyce/mockr_api
 
 ## Database Diagram
-![schema](https://i.imgur.com/r5IFRXW.png)
+![schema](https://i.imgur.com/ZUqzRb0.png)
 
 ## Local Setup
   ### Instructions:
@@ -134,7 +134,7 @@ status: 200
 }
 ```
 
-#### 4) user can activate a question
+#### 4) User can activate a question
 
 ***Request:***
 ```
@@ -244,7 +244,7 @@ status: 200
 
 ### Interview Queries:
 
-#### 6) An interviewer can create an interview
+#### 6) User can create an interview
 
 ***Request:***
 ```
@@ -296,7 +296,7 @@ status: 200
 }
 ```
 
-#### 7) An interviewer can finalize an interview.
+#### 7) User can finalize an interview.
 
 ***Request:***
 ```
@@ -327,7 +327,7 @@ status: 200
 ```
 
 
-#### 8) An interviewer can add a note
+#### 8) User can add a note
 
 ***Request:***
 ```
@@ -398,7 +398,7 @@ status: 200
 }
 ```
 
-#### 9) An interviewer can update a note
+#### 9) User can update a note
 
 ***Request:***
 ```
@@ -429,7 +429,7 @@ status: 200
 
 ### User Queries:
 
-#### 10) An interviewer/admin get get data on a user
+#### 10) User get get data on a user
 
 ***Request:***
 ```
@@ -608,7 +608,7 @@ status: 200
 }
 ```
 
-#### 11) An interviewer/admin can query for all users, or all users who have a specific role.
+#### 11) User can query for all users, or all users who have a specific role.
 
 ***Request:***
 ```
