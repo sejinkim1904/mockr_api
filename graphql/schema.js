@@ -5,7 +5,7 @@ module.exports = buildSchema(`
     id: Int
     body: String
     active: Boolean
-    note: Note
+    notes: Note
   },
   type Interview {
     id: Int
@@ -43,6 +43,10 @@ module.exports = buildSchema(`
     user(
       id: Int!
     ): User!
+    login(
+      email: String!
+      password: String!
+    ): User
     users(
       role: Int
     ): [User]
