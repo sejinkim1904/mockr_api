@@ -1,6 +1,7 @@
 var { buildSchema } = require('graphql')
 
 module.exports = buildSchema(`
+  scalar Date
   type Question {
     id: Int
     body: String
@@ -14,6 +15,8 @@ module.exports = buildSchema(`
     users: [User]
     notes: [Note]
     questions: [Question]
+    createdAt: Date
+    updatedAt: Date
   },
   type Note {
     id: Int
