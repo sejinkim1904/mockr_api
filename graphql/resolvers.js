@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const Question = require('../models').Question;
 const Interview = require('../models').Interview;
 const InterviewUser = require('../models').InterviewUser;
@@ -5,6 +6,17 @@ const User = require('../models').User;
 const UserNote = require('../models').UserNote;
 const Note = require('../models').Note;
 const Sequelize = require('sequelize');
+const FormatError = require('easygraphql-format-error');
+
+const formatError = new FormatError([
+  {
+    name: 'INVALID_EMAIL',
+    message: 'The email or password is not valid',
+    statusCode: '400'
+  }
+]);
+
+const errorName = formatError.errorName;
 
 module.exports = {
   getQuestions: () => {
@@ -191,8 +203,54 @@ module.exports = {
           attributes: []
         }
       }]
-    }
-    )
+    })
+  },
+
+  createSession: async ({ email, password }) => {
+    return await User.findOne({
+      where: { email },
+      include: [{
+        model: Interview,
+        as: 'interviews',
+        include: [
+          {
+            model: User,
+            as: 'users',
+          },
+          {
+            model: Note,
+            as: 'notes',
+            include: [{
+              model: Question,
+              as: 'question'
+            }]
+          },
+          {
+            model: Question,
+            as: 'questions',
+            include: [{
+              model: Note,
+              as: 'notes'
+            }]
+          }
+        ],
+        through: {
+          attributes: []
+        }
+      }]
+    })
+      .then(async user => {
+        if (!user) {
+          throw new Error(errorName.INVALID_EMAIL);
+        }
+
+        const valid =  await bcrypt.compare(password, user.password)
+
+        if (!valid) {
+          throw new Error(errorName.INVALID_EMAIL)
+        }
+        return user
+      })
   },
 
   getUsers: ({role}) => {

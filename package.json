@@ -7,9 +7,11 @@
     "test": "jest --config ./jest.config.js --forceExit --coverage --runInBand"
   },
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
+    "easygraphql-format-error": "0.0.3",
     "express": "^4.16.4",
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.8",

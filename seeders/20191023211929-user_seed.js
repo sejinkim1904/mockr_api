@@ -1,14 +1,17 @@
 'use strict';
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
       {
         id: 9000,
-        firstName: 'Wayne',
-        lastName: 'Brady',
-        email: 'waynebrady@turing.io',
-        password: '12345',
+        firstName: 'Sejin',
+        lastName: 'Kim',
+        email: 'froydroyce@gmail.com',
+        password: bcrypt.hashSync('12345', saltRounds),
         program: 'BE',
         cohort: 1904,
         role: 0,
@@ -20,7 +23,7 @@ module.exports = {
         firstName: 'Drew',
         lastName: 'Carey',
         email: 'drewcarey@turing.io',
-        password: '12345',
+        password: bcrypt.hashSync('12345', saltRounds),
         program: 'FE',
         cohort: 1904,
         role: 0,
@@ -32,7 +35,7 @@ module.exports = {
         firstName: 'Ian',
         lastName: 'Douglas',
         email: 'iandouglas@turing.io',
-        password: '12345',
+        password: bcrypt.hashSync('12345', saltRounds),
         program: 'BE',
         cohort: null,
         role: 1,
@@ -44,7 +47,7 @@ module.exports = {
         firstName: 'Will',
         lastName: 'Mitchell',
         email: 'willmitchell@turing.io',
-        password: '12345',
+        password: bcrypt.hashSync('12345', saltRounds),
         program: 'FE',
         cohort: null,
         role: 1,
@@ -56,7 +59,7 @@ module.exports = {
         firstName: 'Mockr',
         lastName: 'Admin',
         email: 'mockradmin@turing.io',
-        password: '12345',
+        password: bcrypt.hashSync('12345', saltRounds),
         program: null,
         cohort: null,
         role: 2,
