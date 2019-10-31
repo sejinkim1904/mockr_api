@@ -30,18 +30,18 @@ https://github.com/froydroyce/mockr_api
 
 ## Local Setup
   ### Instructions:
-      1. Clone the GitHub repository
-      2. Go to the directory with the new repo  
-      3. Run `npm install`
-      4. Setup database:
-         a) npx sequelize db:create
-         b) npx sequelize db:migrate
-      5. To run the server: `npm start`
+1. Clone the GitHub repository
+2. Go to the directory with the new repo  
+3. Run `npm install`
+4. Setup database:
+   a) npx sequelize db:create
+   b) npx sequelize db:migrate
+5. To run the server: `npm start`
 
   ### Run tests:
-        1. Run `npm test`
-        2. To run a single test file: `npm test -- <file_name>`
-        3. To generate coverage report: `open coverage/lcov-report/index.html`
+1. Run `npm test`
+2. To run a single test file: `npm test -- <file_name>`
+3. To generate coverage report: `open coverage/lcov-report/index.html`
 
 
 ## GraphQL Queries:
