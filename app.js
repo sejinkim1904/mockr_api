@@ -19,24 +19,13 @@ const {
   getRandomQuestions,
   editNote,
   getInterview,
-  createSession
+  createSession,
+  createUser
 } = require('./graphql/resolvers.js');
-
 
 const app = express();
 const FormatError = require('easygraphql-format-error');
-const formatError = new FormatError([
-  {
-    name: 'INVALID_EMAIL',
-    message: 'The email or password is not valid',
-    statusCode: '400'
-  },
-  {
-    name: 'INVALID_PASSWORD',
-    message: 'The email or password is not valid',
-    statusCode: '400'
-  }
-]);
+const formatError = new FormatError();
 const errorName = formatError.errorName;
 
 app.use(cors());
@@ -62,7 +51,8 @@ const root = {
   randomQuestions: getRandomQuestions,
   updateNote: editNote,
   interview: getInterview,
-  login: createSession
+  login: createSession,
+  addUser: createUser
 }
 app.use('/graphql', graphqlHTTP({
   schema: schema,
