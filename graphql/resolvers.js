@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const Question = require('../models').Question;
 const Interview = require('../models').Interview;
 const InterviewUser = require('../models').InterviewUser;
@@ -7,15 +8,28 @@ const UserNote = require('../models').UserNote;
 const Note = require('../models').Note;
 const Sequelize = require('sequelize');
 const FormatError = require('easygraphql-format-error');
-
 const formatError = new FormatError([
   {
     name: 'INVALID_EMAIL',
     message: 'The email or password is not valid',
     statusCode: '400'
-  }
+  },
+  {
+    name: 'INVALID_PASSWORD',
+    message: 'Passwords do not match.',
+    statusCode: '400'
+  },
+  {
+    name: 'EMAIL_TAKEN',
+    message: 'That email is already in use.',
+    statusCode: '400'
+  },
+  {
+    name: 'EMAIL_FORMAT',
+    message: 'Invalid email format.',
+    statusCode: '400'
+  },
 ]);
-
 const errorName = formatError.errorName;
 
 module.exports = {
@@ -260,5 +274,39 @@ module.exports = {
     return User.findAll({
       where: { role }
     });
+  },
+
+  createUser: async ({
+    firstName,
+    lastName,
+    email,
+    password,
+    passwordConfirmation,
+    program,
+    cohort
+  }) => {
+    return await User.findOne({
+      where: { email }
+    })
+      .then(async user => {
+        if (user) {
+          throw await new Error(errorName.EMAIL_TAKEN)
+        }
+
+        let emailFormat = /\S+@\S+/;
+
+        if (!emailFormat.test(email)) {
+          throw await new Error(errorName.EMAIL_FORMAT)
+        }
+
+        if (password !== passwordConfirmation) {
+          throw await new Error(errorName.INVALID_PASSWORD)
+        }
+
+        return await User.create(
+          { firstName, lastName, email, program, cohort },
+          { password: bcrypt.hashSync(password, saltRounds)}
+        )
+      })
   }
 };
