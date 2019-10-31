@@ -100,5 +100,14 @@ module.exports = buildSchema(`
       score: Int
       body: String
     ): Note!
+    addUser(
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+      passwordConfirmation: String!
+      program: String
+      cohort: Int
+    ): User
   }
 `)
