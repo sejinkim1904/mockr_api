@@ -13,16 +13,16 @@ module.exports = {
         email: 'froydroyce@gmail.com',
         password: bcrypt.hashSync('12345', saltRounds),
         program: 'BE',
-        cohort: 1904,
+        cohort: 1912,
         role: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: 9001,
-        firstName: 'Drew',
-        lastName: 'Carey',
-        email: 'drewcarey@turing.io',
+        firstName: 'Eric',
+        lastName: "O'Neill",
+        email: 'oneill.eric23@gmail.com',
         password: bcrypt.hashSync('12345', saltRounds),
         program: 'FE',
         cohort: 1904,
@@ -32,6 +32,42 @@ module.exports = {
       },
       {
         id: 9002,
+        firstName: 'Djavan',
+        lastName: "Munroe",
+        email: 'djavanm24@gmail.com',
+        password: bcrypt.hashSync('12345', saltRounds),
+        program: 'FE',
+        cohort: 1904,
+        role: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 9003,
+        firstName: 'Aurie',
+        lastName: "Gochenour",
+        email: 'myrdden@gmail.com',
+        password: bcrypt.hashSync('12345', saltRounds),
+        program: 'BE',
+        cohort: 1912,
+        role: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 9004,
+        firstName: 'Wayne',
+        lastName: "Brady",
+        email: 'wayneb@turing.io',
+        password: bcrypt.hashSync('12345', saltRounds),
+        program: 'FE',
+        cohort: 1704,
+        role: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 9005,
         firstName: 'Ian',
         lastName: 'Douglas',
         email: 'iandouglas@turing.io',
@@ -43,7 +79,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 9003,
+        id: 9006,
         firstName: 'Will',
         lastName: 'Mitchell',
         email: 'willmitchell@turing.io',
@@ -55,7 +91,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 9004,
+        id: 9007,
         firstName: 'Mockr',
         lastName: 'Admin',
         email: 'mockradmin@turing.io',
