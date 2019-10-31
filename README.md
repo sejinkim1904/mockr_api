@@ -6,6 +6,8 @@ https://thawing-wave-76846.herokuapp.com/graphql
 ## Contributors
 * [Sejin Kim](https://github.com/froydroyce)
 * [Djavan Munroe](https://github.com/djavanm)
+* [Eric O'Neill](https://github.com/eoneill23)
+* [Aurie Gochenour](https://github.com/Myrdden)
 
 ## About the Project  
 * The Mockr API was built as a backend service that stores users data to be displayed in a mock interview app of the same name.
@@ -30,18 +32,25 @@ https://github.com/froydroyce/mockr_api
 
 ## Local Setup
   ### Instructions:
-      1. Clone the GitHub repository
-      2. Go to the directory with the new repo  
-      3. Run `npm install`
-      4. Setup database:
-         a) npx sequelize db:create
-         b) npx sequelize db:migrate
-      5. To run the server: `npm start`
+1. Clone the GitHub repository
+2. Go to the directory with the new repo  
+3. Run `npm install`
+4. Setup database:
+```
+   npx sequelize db:create
+   npx sequelize db:migrate
+```
+5. To run the server: `npm start`
 
   ### Run tests:
-        1. Run `npm test`
-        2. To run a single test file: `npm test -- <file_name>`
-        3. To generate coverage report: `open coverage/lcov-report/index.html`
+1. Setup database:
+```
+   npx sequelize db:create --env test
+   npx sequelize db:migrate --env test
+```
+2. Run `npm test`
+3. To run a single test file: `npm test -- <file_name>`
+4. To generate coverage report: `open coverage/lcov-report/index.html`
 
 
 ## GraphQL Queries:
@@ -656,6 +665,47 @@ status: 200
 
 * If the role attribute is omitted, then all users will be returned.
 
+#### 11) User can create a new account.
 
+***Request:***
+```
+POST '/graphql'
+mutation {
+  addUser(
+  firstname: "Will",
+  lastName: "Mitchell",
+  email: "willmitchell@turing.io",
+  password: "password",
+  passwordConfirmation: "password"
+  "program": "FE",
+  "cohort": 1904
+  ) {
+    id
+    firstName
+    lastName
+    email
+    role
+    program
+    cohort
+  }
+}
+```
+***Response Example:***
+```
+status: 200
+{
+  "data": {
+    "addUser": {
+        "id": 9003,
+        "firstName": "Will",
+        "lastName": "Mitchell",
+        "email": "willmitchell@turing.io",
+        "role": 1,
+        "program": "FE",
+        "cohort": 1904
+    }
+  }
+}
+```
 
 
