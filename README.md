@@ -34,8 +34,10 @@ https://github.com/froydroyce/mockr_api
 2. Go to the directory with the new repo  
 3. Run `npm install`
 4. Setup database:
-   a) npx sequelize db:create
-   b) npx sequelize db:migrate
+```
+   npx sequelize db:create
+   npx sequelize db:migrate
+```
 5. To run the server: `npm start`
 
   ### Run tests:
