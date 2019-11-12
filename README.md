@@ -24,8 +24,8 @@ https://thawing-wave-76846.herokuapp.com/graphql
 ## Packages Used
 * GraphQL
 
-## GitHub Repository
-https://github.com/froydroyce/mockr_api
+## Main App GitHub Repository
+https://github.com/eoneill23/mockr
 
 ## Database Diagram
 ![schema](https://i.imgur.com/ZUqzRb0.png)
