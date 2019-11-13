@@ -36,6 +36,7 @@ module.exports = buildSchema(`
     cohort: Int
     role: Int
     interviews: [Interview]
+    notes: [Note]
   },
   type Query {
     questions(
