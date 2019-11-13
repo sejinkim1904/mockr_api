@@ -272,7 +272,15 @@ module.exports = {
       return User.findAll();
     }
     return User.findAll({
-      where: { role }
+      where: { role },
+      include: [{
+        model: Note,
+        as: 'notes',
+        include: [{
+          model: Question,
+          as: 'question'
+        }]
+      }]
     });
   },
 
