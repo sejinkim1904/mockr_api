@@ -178,7 +178,7 @@ module.exports = {
   editNote: ({ id, score, body }) => {
     return Note.update(
       { score, body },
-      {returning: true, where: { id } },
+      { returning: true, where: { id } },
     )
       .then(updatedNote => {
         return updatedNote[1][0]
@@ -313,8 +313,63 @@ module.exports = {
 
         return await User.create(
           { firstName, lastName, email, program, cohort },
-          { password: bcrypt.hashSync(password, saltRounds)}
+          { password: bcrypt.hashSync(password, saltRounds) }
         )
+      })
+  },
+
+  editUser: async ({
+    id,
+    firstName,
+    lastName,
+    email,
+    password,
+    passwordConfirmation,
+    program,
+    cohort,
+    role,
+    roleRequest
+  }) => {
+    if (email) {
+      let emailFormat = /\S+@\S+/;
+      let user = await User.findOne({
+        where: { email }
+      })
+
+      if (user) {
+        throw await new Error(errorName.EMAIL_TAKEN)
+      }
+
+      if (!emailFormat.test(email)) {
+        throw await new Error(errorName.EMAIL_FORMAT)
+      }
+    }
+
+    if (password !== passwordConfirmation) {
+      throw new Error(errorName.INVALID_PASSWORD)
+    }
+
+    if (password) {
+      await User.update(
+        { password: bcrypt.hashSync(password, saltRounds) },
+        { returning: true, where: { id } },
+      )
+    }
+
+    return await User.update(
+      {
+        firstName,
+        lastName,
+        email,
+        program,
+        cohort,
+        role,
+        roleRequest
+      },
+      { returning: true, where: { id } },
+    )
+      .then(updatedUser => {
+        return updatedUser[1][0]
       })
   }
 };

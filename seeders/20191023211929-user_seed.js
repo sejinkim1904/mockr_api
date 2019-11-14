@@ -15,6 +15,7 @@ module.exports = {
         program: 'BE',
         cohort: 1912,
         role: 0,
+        roleRequest: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -27,6 +28,7 @@ module.exports = {
         program: 'FE',
         cohort: 1904,
         role: 0,
+        roleRequest: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -39,6 +41,7 @@ module.exports = {
         program: 'FE',
         cohort: 1904,
         role: 0,
+        roleRequest: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -51,6 +54,7 @@ module.exports = {
         program: 'BE',
         cohort: 1912,
         role: 0,
+        roleRequest: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -63,6 +67,7 @@ module.exports = {
         program: 'FE',
         cohort: 1704,
         role: 0,
+        roleRequest: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -75,6 +80,7 @@ module.exports = {
         program: 'BE',
         cohort: null,
         role: 1,
+        roleRequest: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -87,6 +93,7 @@ module.exports = {
         program: 'FE',
         cohort: null,
         role: 1,
+        roleRequest: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -99,6 +106,7 @@ module.exports = {
         program: null,
         cohort: null,
         role: 2,
+        roleRequest: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
