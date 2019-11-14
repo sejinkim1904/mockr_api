@@ -35,6 +35,7 @@ module.exports = buildSchema(`
     program: String
     cohort: Int
     role: Int
+    roleRequest: Int
     interviews: [Interview]
     notes: [Note]
   },
@@ -109,6 +110,18 @@ module.exports = buildSchema(`
       passwordConfirmation: String!
       program: String
       cohort: Int
+    ): User
+    updateUser(
+      id: Int!
+      firstName: String
+      lastName: String
+      email: String
+      password: String
+      passwordConfirmation: String
+      program: String
+      cohort: Int
+      role: Int
+      roleRequest: Int
     ): User
   }
 `)

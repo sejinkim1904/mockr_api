@@ -20,7 +20,8 @@ const {
   editNote,
   getInterview,
   createSession,
-  createUser
+  createUser,
+  editUser
 } = require('./graphql/resolvers.js');
 
 const app = express();
@@ -52,7 +53,8 @@ const root = {
   updateNote: editNote,
   interview: getInterview,
   login: createSession,
-  addUser: createUser
+  addUser: createUser,
+  updateUser: editUser
 }
 app.use('/graphql', graphqlHTTP({
   schema: schema,
