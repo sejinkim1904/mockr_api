@@ -205,7 +205,6 @@ describe('Mockr API', () => {
         .send(reqBody)
         .then(response => {
           expect(response.status).toBe(200)
-          console.log(response.body.data.users)
           expect(Object.keys(response.body.data.users[0])).toContain("id")
           expect(Object.keys(response.body.data.users[0])).toContain("firstName")
           expect(Object.keys(response.body.data.users[0])).toContain("lastName")
