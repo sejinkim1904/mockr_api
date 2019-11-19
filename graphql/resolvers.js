@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const axios = require('axios');
 const Question = require('../models').Question;
 const Interview = require('../models').Interview;
 const InterviewUser = require('../models').InterviewUser;
@@ -370,6 +371,26 @@ module.exports = {
     )
       .then(updatedUser => {
         return updatedUser[1][0]
+      })
+  },
+
+  oauthUser: async ({token}) => {
+    return await axios.get(`https://api.github.com/user?access_token=${token}`)
+      .then(async response => {
+        const profile = response.data
+        const fullName = profile.name.split(" ")
+
+        return await User.findOrCreate({
+          where: {
+            email: profile.email,
+            firstName: fullName[0],
+            lastName: fullName[1],
+            image: profile.avatar_url
+          }
+        })
+          .then(user => {
+            return user[0]
+          })
       })
   }
 };

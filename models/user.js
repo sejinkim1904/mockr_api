@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     program: DataTypes.STRING,
     cohort: DataTypes.INTEGER,
     role: DataTypes.INTEGER,
-    roleRequest: DataTypes.INTEGER
+    roleRequest: DataTypes.INTEGER,
+    image: DataTypes.STRING
   }, {});
   User.associate = function(models) {
     User.belongsToMany(models.Interview, {

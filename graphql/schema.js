@@ -35,6 +35,7 @@ module.exports = buildSchema(`
     program: String
     cohort: Int
     role: Int
+    image: String
     roleRequest: Int
     interviews: [Interview]
     notes: [Note]
@@ -61,6 +62,9 @@ module.exports = buildSchema(`
     interview(
       id: Int!
     ): Interview
+    currentUser(
+      token: String!
+    ): User
   },
   type Mutation {
     addQuestion(
