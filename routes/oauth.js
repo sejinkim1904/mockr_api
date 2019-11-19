@@ -8,7 +8,7 @@ const User = require('../models').User;
 passport.use(new GitHubStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/oauth/github/callback"
+    callbackURL: `${process.env.MOCKR_API}/oauth/github/callback`
   },
   async function(accessToken, refreshToken, profile, done) {
     done(null, profile, accessToken)
@@ -25,10 +25,10 @@ router.get('/github',
 
 router.get('/github/callback',
   passport.authenticate('github',
-    { failureRedirect: 'https://sleepy-sierra-43686.herokuapp.com/login' }
+    { failureRedirect: `${process.env.MOCKR_CLIENT}/login` }
   ),
   function(req, res) {
-    res.redirect(`http://localhost:2000/auth/success/${req.authInfo}`);
+    res.redirect(`${process.env.MOCKR_CLIENT}/auth/success/${req.authInfo}`);
   });
 
 module.exports = router;
