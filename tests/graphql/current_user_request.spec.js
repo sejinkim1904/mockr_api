@@ -163,7 +163,6 @@ describe('Mockr API', () => {
         .post('/graphql')
         .send(reqBody)
         .then(response => {
-          console.log(response.body)
           expect(response.status).toBe(200)
           expect(Object.keys(response.body.data.currentUser)).toContain("id")
           expect(Object.keys(response.body.data.currentUser)).toContain("firstName")
