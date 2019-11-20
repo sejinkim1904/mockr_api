@@ -55,6 +55,7 @@ module.exports = buildSchema(`
     ): User
     users(
       role: Int
+      roleRequest: Int
     ): [User]
     randomQuestions(
       id: Int

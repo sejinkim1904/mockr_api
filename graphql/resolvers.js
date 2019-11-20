@@ -268,10 +268,17 @@ module.exports = {
       })
   },
 
-  getUsers: ({role}) => {
+  getUsers: ({ role, roleRequest }) => {
+    if (roleRequest) {
+      return User.findAll({
+        where: { roleRequest }
+      })
+    }
+
     if(role === undefined) {
       return User.findAll();
     }
+
     return User.findAll({
       where: { role },
       include: [{
