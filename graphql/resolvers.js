@@ -390,14 +390,19 @@ module.exports = {
         return await User.findOrCreate({
           where: {
             email: profile.email,
-            firstName: fullName[0],
-            lastName: fullName[1],
-            image: profile.avatar_url
           }
         })
-          .then(user => {
-            return user[0]
+          .then(async user => {
+            return await User.update({
+              firstName: fullName[0],
+              lastName: fullName[1],
+              image: profile.avatar_url,
+              returning: true, where: { id: user[0].id } 
+            })
           })
+            .then(user => {
+              return user[1][0]
+            })
       })
   }
 };
