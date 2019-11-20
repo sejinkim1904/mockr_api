@@ -401,10 +401,10 @@ module.exports = {
               },
               { returning: true, where: { id: user[0].id } }
             )
-              .then(oauthUser => {
-                return oauthUser[1][0]
-              })
           })
+            .then(oauthUser => {
+              return oauthUser[1][0]
+            })
       })
   }
 };
