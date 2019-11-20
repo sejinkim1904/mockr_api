@@ -7,7 +7,7 @@ module.exports = {
       "image",
       {
         type: Sequelize.STRING,
-        defaultValue: "https://sleepy-sierra-43686.herokuapp.com/static/media/profile.a1a1be24.jpg",
+        defaultValue: "https://github.com/eoneill23/mockr/blob/master/src/images/profile.jpg?raw=true",
         onUpdate: "CASCADE",
         onDelete: "SET NULL"
       }
