@@ -31,7 +31,6 @@ module.exports = buildSchema(`
     firstName: String
     lastName: String
     email: String
-    password: String
     program: String
     cohort: Int
     role: Int

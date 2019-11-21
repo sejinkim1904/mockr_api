@@ -48,7 +48,6 @@ describe('Mockr API', () => {
             firstName
             lastName
             email
-            password
             program
             cohort
             role
@@ -75,7 +74,6 @@ describe('Mockr API', () => {
             firstName
             lastName
             email
-            password
             program
             cohort
             role
@@ -102,7 +100,6 @@ describe('Mockr API', () => {
             firstName
             lastName
             email
-            password
             program
             cohort
             role
@@ -129,7 +126,6 @@ describe('Mockr API', () => {
             firstName
             lastName
             email
-            password
             program
             cohort
             role
